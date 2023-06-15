@@ -17,186 +17,43 @@ namespace Server.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("ProductVersion", "7.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Server.Models.Answer", b =>
+            modelBuilder.Entity("Server.Models.Account", b =>
                 {
-                    b.Property<int>("Id_answer")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id_answer"));
-
-                    b.Property<string>("Free_text")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int?>("QuestionId_question")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("User_form_id")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id_answer");
-
-                    b.HasIndex("QuestionId_question");
-
-                    b.ToTable("Answers");
-                });
-
-            modelBuilder.Entity("Server.Models.Form", b =>
-                {
-                    b.Property<int>("Id_form")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id_form"));
-
-                    b.Property<int>("CreatorId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Form_title")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int?>("QuestionId_question")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("User_form_id")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id_form");
-
-                    b.HasIndex("CreatorId");
-
-                    b.HasIndex("QuestionId_question");
-
-                    b.HasIndex("User_form_id");
-
-                    b.ToTable("Forms");
-                });
-
-            modelBuilder.Entity("Server.Models.Person", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("First_name")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("HashPassword")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("Role")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Second_name")
+                    b.Property<byte[]>("SaltPassword")
+                        .IsRequired()
+                        .HasColumnType("bytea");
+
+                    b.Property<string>("SecondName")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<int?>("User_form_id")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("User_form_id");
-
-                    b.ToTable("Persons");
-                });
-
-            modelBuilder.Entity("Server.Models.Question", b =>
-                {
-                    b.Property<int>("Id_question")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id_question"));
-
-                    b.Property<string>("Question_title")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id_question");
-
-                    b.ToTable("Questions");
-                });
-
-            modelBuilder.Entity("Server.Models.User_form", b =>
-                {
-                    b.Property<int>("User_form_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("User_form_id"));
-
-                    b.Property<int>("Form_status")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Rejected_comment")
-                        .HasColumnType("text");
-
-                    b.HasKey("User_form_id");
-
-                    b.ToTable("User_form");
-                });
-
-            modelBuilder.Entity("Server.Models.Answer", b =>
-                {
-                    b.HasOne("Server.Models.Question", null)
-                        .WithMany("Answer")
-                        .HasForeignKey("QuestionId_question");
-                });
-
-            modelBuilder.Entity("Server.Models.Form", b =>
-                {
-                    b.HasOne("Server.Models.Person", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Server.Models.Question", null)
-                        .WithMany("Form_id")
-                        .HasForeignKey("QuestionId_question");
-
-                    b.HasOne("Server.Models.User_form", null)
-                        .WithMany("Form_id")
-                        .HasForeignKey("User_form_id");
-
-                    b.Navigation("Creator");
-                });
-
-            modelBuilder.Entity("Server.Models.Person", b =>
-                {
-                    b.HasOne("Server.Models.User_form", null)
-                        .WithMany("Person_id")
-                        .HasForeignKey("User_form_id");
-                });
-
-            modelBuilder.Entity("Server.Models.Question", b =>
-                {
-                    b.Navigation("Answer");
-
-                    b.Navigation("Form_id");
-                });
-
-            modelBuilder.Entity("Server.Models.User_form", b =>
-                {
-                    b.Navigation("Form_id");
-
-                    b.Navigation("Person_id");
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

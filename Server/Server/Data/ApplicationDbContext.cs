@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Server.Data.Entities;
 using Server.Models;
 
 namespace Server.Data
@@ -10,10 +13,11 @@ namespace Server.Data
         {
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserForm> UserForm { get; set; }
-        public DbSet<Form> Forms { get; set; }
-        public DbSet<Question> Questions { get; set; }
-        public DbSet<Answer> Answers { get; set; }
+        public DbSet<Account> Users { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
