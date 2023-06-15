@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Server.Data;
 using Server.Models;
 using Server.Models.Identity;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
+using Server.Services.PasswordService;
+using Server.Services.TokenService;
+using Server.Services.UserService;
 using System.Security.Cryptography;
 
 namespace Server.Controllers
@@ -19,13 +18,17 @@ namespace Server.Controllers
     {
         public static Account newUser = new Account();
 
-        private readonly IConfiguration _configuration;
         private readonly ApplicationDbContext _context;
+        private readonly IUserService _userService;
+        private readonly IPasswordService _passwordService;
+        private readonly ITokenService _tokenService;
 
-        public UsersController(IConfiguration configuration, ApplicationDbContext context)
+        public UsersController(IConfiguration configuration, ApplicationDbContext context, IPasswordService passwordService, ITokenService tokenService, IUserService userService)
         {
-            _configuration = configuration;
             _context = context;
+            _userService = userService;
+            _passwordService = passwordService;
+            _tokenService = tokenService;
         }
 
         [HttpPost("register")]
@@ -33,11 +36,11 @@ namespace Server.Controllers
         {
             Roles role = (Roles)Enum.Parse(typeof(Roles), request.Role);
 
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email && u.Role == role);
+            var user = await _userService.GetUserByEmailAndRole(request.Email, role);
 
             if (user != null) 
             {
-                return Ok("User already registered");
+                return Conflict("User already registered");
             }
 
             byte[] salt = new byte[128 / 8];
@@ -46,7 +49,7 @@ namespace Server.Controllers
                 rng.GetBytes(salt);
             }
 
-            string hashedPassword = HashPassword(request.Password, salt);
+            string hashedPassword = _passwordService.HashPassword(request.Password, salt);
 
             newUser.FirstName = request.FirstName;
             newUser.SecondName = request.SecondName;
@@ -58,7 +61,7 @@ namespace Server.Controllers
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
 
-            return Ok("User successfully registered");
+            return Created("", "User successfully registered");
         }
 
         [HttpPost("login")]
@@ -66,21 +69,21 @@ namespace Server.Controllers
         {
             Roles role = (Roles)Enum.Parse(typeof(Roles), request.Role);
 
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email && u.Role == role);
+            var user = await _userService.GetUserByEmailAndRole(request.Email, role);
 
             if (user == null)
             {
-                return BadRequest("User not found.");
+                return NotFound("User not found");
             }
 
-            bool isPasswordValid = VerifyPassword(request.Password, user.SaltPassword, user.HashPassword);
+            bool isPasswordValid = _passwordService.VerifyPassword(request.Password, user.SaltPassword, user.HashPassword);
 
             if (!isPasswordValid)
             {
                 return Unauthorized("Wrong password");
             }
 
-            string token = CreateToken(user);
+            string token = _tokenService.CreateToken(user);
 
             return Ok(token);
         }
@@ -91,7 +94,7 @@ namespace Server.Controllers
         {
             string accessToken = HttpContext.Request.Headers["Authorization"].ToString().Replace("bearer ", "");
 
-            if (IsAccessTokenValid(accessToken))
+            if (_tokenService.IsAccessTokenValid(accessToken))
             {
                 return Ok("Good");
             }
@@ -99,83 +102,6 @@ namespace Server.Controllers
             {
                 return Forbid();
             }
-        }
-
-        private bool IsAccessTokenValid(string accessToken)
-        {
-            try
-            {
-                // Getting the secret key from the configuration
-                var secretKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
-
-                // Configuring Token Validation Options
-                var tokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = secretKey,
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ClockSkew = TimeSpan.Zero // Ignore time difference
-                };
-
-                // Access token validation
-                var tokenHandler = new JwtSecurityTokenHandler();
-                tokenHandler.ValidateToken(accessToken, tokenValidationParameters, out SecurityToken validatedToken);
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        private string CreateToken(Account user) 
-        {
-            Roles role = (Roles)Enum.Parse(typeof(Roles), (user.Role).ToString());
-
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, role.ToString())
-            };
-
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
-
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-
-            var token = new JwtSecurityToken(
-                claims: claims,
-                expires: DateTime.UtcNow.AddDays(1),
-                // expires: DateTime.UtcNow.AddSeconds(30),
-                signingCredentials: creds
-            );
-
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-
-            return jwt;
-        }
-
-        private string HashPassword(string password, byte[] salt)
-        {
-            // Password hash generation using PBKDF2 and SHA256
-            string hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: password,
-                salt: salt,
-                prf: KeyDerivationPrf.HMACSHA256,
-                iterationCount: 10000,
-                numBytesRequested: 256 / 8));
-
-            return hashedPassword;
-        }
-
-        private bool VerifyPassword(string password, byte[] salt, string hashedPassword)
-        {
-            // Generating a hash of the provided password using the same salt
-            string hashedProvidedPassword = HashPassword(password, salt);
-
-            // Comparing the hash of the provided password with the hash from the database
-            return hashedPassword.Equals(hashedProvidedPassword);
         }
     }
 }

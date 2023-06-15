@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Server.Data;
+using Server.Services.PasswordService;
+using Server.Services.TokenService;
+using Server.Services.UserService;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 
@@ -15,7 +18,11 @@ builder.Services.AddControllers(); // .AddJsonOptions(opts => { var enumConverte
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IPasswordService, PasswordService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSwaggerGen(options =>
 {
