@@ -14,9 +14,10 @@ namespace Server.Services.UserService
             _context = context;
         }
 
-        public async Task<Account> GetUserByEmailAndRole(string email, Roles role)
+        public async Task<Account> GetUserByEmailAndRole(string email, string role)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.Role == role);
+            Roles roleForDb = (Roles)Enum.Parse(typeof(Roles), role);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.Role == roleForDb);
 
             if (user != null)
             {

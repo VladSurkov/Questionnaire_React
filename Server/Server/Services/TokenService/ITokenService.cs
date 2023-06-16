@@ -1,4 +1,5 @@
 ﻿using Server.Models;
+using System.Security.Claims;
 
 namespace Server.Services.TokenService
 {
@@ -7,5 +8,9 @@ namespace Server.Services.TokenService
         public bool IsAccessTokenValid(string accessToken);
 
         public string CreateToken(Account user);
+
+        public ClaimsPrincipal DecodeJwt(string token);
+
+        public string GetTokenFromHeaders();
     }
 }

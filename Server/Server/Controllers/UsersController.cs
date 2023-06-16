@@ -36,7 +36,7 @@ namespace Server.Controllers
         {
             Roles role = (Roles)Enum.Parse(typeof(Roles), request.Role);
 
-            var user = await _userService.GetUserByEmailAndRole(request.Email, role);
+            var user = await _userService.GetUserByEmailAndRole(request.Email, role.ToString());
 
             if (user != null) 
             {
@@ -67,9 +67,7 @@ namespace Server.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<Account>> Login(LoginRequest request)
         {
-            Roles role = (Roles)Enum.Parse(typeof(Roles), request.Role);
-
-            var user = await _userService.GetUserByEmailAndRole(request.Email, role);
+            var user = await _userService.GetUserByEmailAndRole(request.Email, request.Role);
 
             if (user == null)
             {
