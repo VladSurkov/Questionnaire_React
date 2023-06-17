@@ -1,0 +1,88 @@
+body{
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
+}
+
+.SignUp{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &__container{
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 25px;
+    }
+
+    &__form{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+
+        input{
+            width: 100%;
+            margin-bottom: 15px;
+            height: 40px;
+            padding: 0 15px;
+            background: transparent;
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 10px;
+            outline: none;
+            transition: .4s ease-in;
+            &:focus{
+                border: 1px solid #1966b3;
+            }
+        }
+    }
+
+    &__title{
+        font-size: 32px;
+        font-weight: 700;
+        margin: 0 0 15px 0;
+
+    }
+
+    &__text{
+        font-size: 16px;
+        text-align: center;
+        
+    }
+
+    &__select{
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        select{
+            
+            height: 40px;
+            padding: 0 15px;
+            background: transparent;
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 10px;
+            outline: none;
+            transition: .4s ease-in;
+            color: #000;
+            &:focus{
+                border: 1px solid #1966b3;
+            }
+        }
+       
+    }
+
+    &__btn{
+        margin-top: 25px;
+    }
+}
