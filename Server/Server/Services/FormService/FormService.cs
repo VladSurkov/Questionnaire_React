@@ -64,5 +64,29 @@ namespace Server.Services.CreateFormService
 
             return result;
         }
+
+        public UserFormModel FillForm(List<FillFormRequest> request, Guid UserId, Guid FormId)
+        {
+            var newUserForm = new UserFormModel();
+            newUserForm.UserId = UserId;
+            newUserForm.FormId = FormId;
+            newUserForm.FormStatus = FormStatus.Filled;
+            newUserForm.RejectedComment = "";
+
+            _context.UserForms.Add(newUserForm);
+
+            for (int i = 0; i < request.Count; i++)
+            {
+                var newAnswer = new AnswerModel();
+                newAnswer.UserFormId = request[i].FormId;
+                newAnswer.QuestionId = request[i].QuestionId;
+                newAnswer.AnswerValue = request[i].AnswerValue;
+                _context.Answers.Add(newAnswer);
+            }
+
+            _context.SaveChanges();
+
+            return newUserForm;
+        }
     }
 }

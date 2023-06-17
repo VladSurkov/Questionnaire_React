@@ -11,5 +11,7 @@ namespace Server.Services.CreateFormService
         public List<GetAllFormResponse> GetAllForms();
 
         public GetFormResponse GetForm(Guid id);
+
+        public UserFormModel FillForm(List<FillFormRequest> request, Guid UserId, Guid FormId);
     }
 }

@@ -10,7 +10,7 @@ using Server.Models;
 namespace Server.Controllers
 {
     [ApiController]
-    [Route("[controller]")] // https://localhost:44309/CreateForm/creareForm
+    [Route("[controller]")]
 
     public class FormController : ControllerBase
     {
@@ -58,6 +58,21 @@ namespace Server.Controllers
             var form = _formService.GetForm(id);
 
             return Ok(form);
+        }
+
+        [HttpPost("fillForm")]
+        [Authorize(Roles = "User")]
+        public async Task<IActionResult> FillInTheForm(List<FillFormRequest> request, [FromQuery] Guid FormId)
+        {
+            var jwt = _tokenService.GetTokenFromHeaders();
+            var userDataFromJwt = _tokenService.DecodeJwt(jwt);
+            var userEmail = userDataFromJwt.FindFirstValue("Email");
+            var userRole = userDataFromJwt.FindFirstValue("http://schemas.microsoft.com/ws/2008/06/identity/claims/role");
+
+            var user = await _userService.GetUserByEmailAndRole(userEmail, userRole);
+
+            var result = _formService.FillForm(request, user.Id, FormId);
+            return Ok(result);
         }
     }
 }

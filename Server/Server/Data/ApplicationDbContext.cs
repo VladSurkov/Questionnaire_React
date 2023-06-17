@@ -19,6 +19,10 @@ namespace Server.Data
 
         public DbSet<QuestionModel> Questions { get; set; }
 
+        public DbSet<AnswerModel> Answers { get; set; }
+
+        public DbSet<UserFormModel> UserForms { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
