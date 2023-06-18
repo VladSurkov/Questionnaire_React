@@ -74,5 +74,22 @@ namespace Server.Controllers
             var result = _formService.FillForm(request, user.Id, FormId);
             return Ok(result);
         }
+
+        [HttpGet("getUserForms")]
+        [Authorize(Roles = "Reviewer")]
+        public async Task<IActionResult> GetUserFormsForReviewer()
+        {
+            var forms = await _formService.GetAllUserFormsForReviewer();
+            return Ok(forms);
+        }
+
+        [HttpGet("getUserForm")]
+        [Authorize(Roles = "Reviewer")]
+        public async Task<IActionResult> GetUserForm([FromQuery] Guid id)
+        {
+            var form = await _formService.GetUserForm(id);
+
+            return Ok(form);
+        }
     }
 }

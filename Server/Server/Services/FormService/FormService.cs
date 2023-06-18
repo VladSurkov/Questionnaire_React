@@ -3,16 +3,19 @@ using Microsoft.EntityFrameworkCore;
 using Server.Data;
 using Server.Models;
 using Server.Models.Identity;
+using Server.Services.UserService;
 
 namespace Server.Services.CreateFormService
 {
     public class FormService : IFormService
     {
         private readonly ApplicationDbContext _context;
+        private readonly IUserService _userService;
 
-        public FormService(ApplicationDbContext context)
+        public FormService(ApplicationDbContext context, IUserService userService)
         {
             _context = context;
+            _userService = userService;
         }
         public void CreateForm(string formTitle, string creator, string[] questions) // Task<ActionResult<FormModel>>
         {
@@ -87,6 +90,59 @@ namespace Server.Services.CreateFormService
             _context.SaveChanges();
 
             return newUserForm;
+        }
+
+        public async Task<List<FormsForReviewerResponse>> GetAllUserFormsForReviewer()
+        {
+            var forms = _context.UserForms.Where(f => f.FormStatus == FormStatus.Filled).ToList();
+
+            List<FormsForReviewerResponse> result = new List<FormsForReviewerResponse>();
+
+            for (int i = 0; i < forms.Count; i++)
+            {
+                var currentFormForReviewer = new FormsForReviewerResponse();
+                var currentUser = await _userService.GetUserById(forms[i].UserId);
+                var currentForm = await _context.Forms.FirstOrDefaultAsync(u => u.Id == forms[i].FormId);
+
+                currentFormForReviewer.UserFormId = forms[i].Id;
+                currentFormForReviewer.User = currentUser.FirstName + " " + currentUser.SecondName;
+                currentFormForReviewer.TitleForm = currentForm.FormTitle;
+                currentFormForReviewer.FormStatus = (forms[i].FormStatus).ToString();
+                result.Add(currentFormForReviewer);
+            }
+
+            return result;
+        }
+
+        public async Task<FormForReviewerResponse> GetUserForm(Guid id)
+        {
+            var result = new FormForReviewerResponse();
+
+            var userForm = await _context.UserForms.FirstOrDefaultAsync(f => f.Id == id);
+            var currentForm = await _context.Forms.FirstOrDefaultAsync(f => f.Id == userForm.FormId);
+            var user = await _userService.GetUserById(userForm.UserId);
+
+            var questions = _context.Questions.Where(q => q.FormId == currentForm.Id).ToList();
+
+
+            result.User = user.FirstName + " " + user.SecondName;
+            result.FormTitle = currentForm.FormTitle;
+
+            List<QuestionAndAnswer> answersList = new List<QuestionAndAnswer>();
+
+            for (int i = 0; i < questions.Count; i++)
+            {
+                var newAnswer = new QuestionAndAnswer();
+
+                newAnswer.Question = questions[i].Question;
+                var answer = await _context.Answers.FirstOrDefaultAsync(a => a.QuestionId == questions[i].Id);
+                newAnswer.Answer = answer.AnswerValue;
+                answersList.Add(newAnswer);
+            }
+
+            result.Answers = answersList;
+
+            return result;
         }
     }
 }
