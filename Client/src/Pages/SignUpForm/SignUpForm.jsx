@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
-
 import TextInput from '../../Components/TextInput/TextInput';
+import { Context } from '../../index';
 import './SignUpForm.scss';
 
 
+
 const SignUpForm = () => {
+
+    const {store} = useContext(Context);
 
     return (
         <div className="SignUp">
@@ -17,19 +20,19 @@ const SignUpForm = () => {
 
                 <Formik
                     initialValues = {{
-                        name: '',
-                        surname: '',
+                        firstName: '',
+                        secondName: '',
                         email: '',
                         password: '',
                         role: '',
                     }}
                     
                     validationSchema = {Yup.object({
-                        name: Yup.string()
+                        firstName: Yup.string()
                                 .min(2,"Ім'я повинно бути хоча б з 2 символами!").required("Це обов'язково!"),
             
-                        surname: Yup.string()
-                                   .min(2,"Прізвище повинно бути хоча б з 2 символами!").required("Це обов'язково!"),
+                        secondName: Yup.string()
+                                .min(2,"Прізвище повинно бути хоча б з 2 символами!").required("Це обов'язково!"),
             
                         email: Yup.string()
                                  .email('Неправильно введено почтову адресу!').required("Це обов'язково!"),
@@ -47,7 +50,7 @@ const SignUpForm = () => {
                                 .required("Це обов'язково!")
                     })}
 
-                    onSubmit = {values => console.log(JSON.stringify(values, null, 2))}
+                    onSubmit = {values => store.register(values.email, values.password, values.firstName, values.secondName, values.role)}
                     >
 
                     {({isValid, isSubmitting}) => (
@@ -56,14 +59,14 @@ const SignUpForm = () => {
 
                             <div className="SignUp__input-box">
                                 <TextInput 
-                                    name="name" 
+                                    name="firstName" 
                                     type="text"  
                                     placeholder="Ім'я"/>
                             </div>
 
                             <div className="SignUp__input-box">
                                 <TextInput 
-                                    name="surname" 
+                                    name="secondName" 
                                     type="text"  
                                     placeholder="Прізвище"/>
                             </div>
@@ -90,9 +93,9 @@ const SignUpForm = () => {
                                     id="role"
                                     as="select">
                                     <option value="">Не обрано</option>        
-                                    <option value="creator">Creator</option>
-                                    <option value="user">User</option>
-                                    <option value="reviewer">Reviewer</option>
+                                    <option value="Creator">Creator</option>
+                                    <option value="User">User</option>
+                                    <option value="Reviewer">Reviewer</option>
                                 </Field>
 
                             </div>
