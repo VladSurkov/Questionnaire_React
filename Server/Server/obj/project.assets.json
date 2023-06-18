@@ -2511,19 +2511,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Vlady\\.nuget\\packages\\": {}
+    "C:\\Users\\kiril\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Университет\\Project\\Questionnaire_React\\Server\\Server\\Server.csproj",
+      "projectUniqueName": "D:\\ULYANOV KIRILL\\МОЯ РАЗРАБОТКА\\WORKING\\questionaire-project-sur\\Questionnaire_React\\Server\\Server\\Server.csproj",
       "projectName": "Server",
-      "projectPath": "D:\\Университет\\Project\\Questionnaire_React\\Server\\Server\\Server.csproj",
-      "packagesPath": "C:\\Users\\Vlady\\.nuget\\packages\\",
-      "outputPath": "D:\\Университет\\Project\\Questionnaire_React\\Server\\Server\\obj\\",
+      "projectPath": "D:\\ULYANOV KIRILL\\МОЯ РАЗРАБОТКА\\WORKING\\questionaire-project-sur\\Questionnaire_React\\Server\\Server\\Server.csproj",
+      "packagesPath": "C:\\Users\\kiril\\.nuget\\packages\\",
+      "outputPath": "D:\\ULYANOV KIRILL\\МОЯ РАЗРАБОТКА\\WORKING\\questionaire-project-sur\\Questionnaire_React\\Server\\Server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Vlady\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kiril\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2531,6 +2531,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2633,7 +2634,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
   }
