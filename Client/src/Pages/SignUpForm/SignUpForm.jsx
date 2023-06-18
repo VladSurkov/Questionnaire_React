@@ -53,8 +53,9 @@ const SignUpForm = () => {
                     {({isValid, isSubmitting}) => (
 
                         <Form className="SignUp__form">
-
+                            
                             <div className="SignUp__input-box">
+                                <i className="bi bi-person"></i>
                                 <TextInput 
                                     name="name" 
                                     type="text"  
@@ -62,6 +63,7 @@ const SignUpForm = () => {
                             </div>
 
                             <div className="SignUp__input-box">
+                                <i class="bi bi-person-check"></i>
                                 <TextInput 
                                     name="surname" 
                                     type="text"  
@@ -69,6 +71,7 @@ const SignUpForm = () => {
                             </div>
 
                             <div className="SignUp__input-box">
+                                <i className="bi bi-envelope"></i>
                                 <TextInput 
                                     name="email" 
                                     type="email"  
@@ -76,6 +79,7 @@ const SignUpForm = () => {
                             </div>
                             
                             <div className="SignUp__input-box">
+                                <i className="bi bi-key"></i>
                                 <TextInput 
                                     name="password" 
                                     type="password"  
