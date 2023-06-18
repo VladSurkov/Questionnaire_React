@@ -1,4 +1,6 @@
 import React from 'react';
+import { useForm } from "react-hook-form";
+
 import './SignUpForm.scss';
 
 const SignUpForm = () => {
@@ -23,6 +25,8 @@ const SignUpForm = () => {
                             <option value="reviewer">Reviewer</option>
                         </select>
                     </div>
+
+                    <div className="SignUp__link">Вже маєте обліковий запис? <a href="#">Увійти в систему</a>.</div>
 
                     <button type="submit" class="SignUp__btn">Зареєструватися</button>
 
