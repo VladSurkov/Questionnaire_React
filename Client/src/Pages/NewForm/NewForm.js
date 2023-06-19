@@ -2,6 +2,8 @@ import React, {useState, useContext} from 'react';
 import {Context} from '../../index';
 import {observer} from 'mobx-react';
 
+import './NewForm.scss';
+
 const NewForm = observer(() => {
     const {store} = useContext(Context);
     const [titleForm, setTitleForm] = useState('');
@@ -38,37 +40,62 @@ const NewForm = observer(() => {
     };
 
     return (
-        <form>
-            <label>Назва форми</label>
-            <input onChange={(e) => setTitleForm(e.target.value)} />
+        <div className="NewForm">
+            <div className="NewForm__container">
 
-            <button
-                onClick={addInputHandler}
-                type="button"
-            >
-                Створити питання
-            </button>
-
-            {inputs.map((input) => (
-                <div key={input.id}>
-                    <input
-                        type="text"
-                        value={input.value}
-                        onChange={(e) => handleInputChange(e, input.id)}
-                    />
-                    <button onClick={() => handleRemoveInput(input.id)}>
-                        Видалити
-                    </button>
+                <h2 className="NewForm__title">Нова Форма</h2>
+                <div className="NewForm__text">
+                    Створіть нову форму за допомогою інструментів нижче.
                 </div>
-            ))}
 
-            <button
-                type="submit"
-                onClick={createFormHandler}
-            >
-                Створити форму
-            </button>
-        </form>
+                <form className="NewForm__form">
+
+                    <div className="NewForm__input-box">
+                        <label htmlFor='formName'>Назва форми</label>
+                        <input id='formName' onChange={(e) => setTitleForm(e.target.value)} />
+                    </div>
+                    
+
+                    
+
+                    <div className="NewForm__questions">
+
+                        {inputs.map((input) => (
+                            <div key={input.id} className="NewForm__input-box">
+                                <label>Питання </label>
+                                <input
+                                    type="text"
+                                    value={input.value}
+                                    onChange={(e) => handleInputChange(e, input.id)}
+                                />
+                                <button className="NewForm__btn" onClick={() => handleRemoveInput(input.id)}>
+                                    Видалити
+                                </button>
+                            </div>
+                        ))}
+
+                    </div>
+
+                    <button
+                        className="NewForm__question-btn"
+                        onClick={addInputHandler}
+                        type="button"
+                    >
+                        Створити питання
+                    </button>
+
+                    
+
+                    <button
+                        className="NewForm__form-btn NewForm__btn"
+                        type="submit"
+                        onClick={createFormHandler}
+                    >
+                        Створити форму
+                    </button>
+                </form>
+            </div>
+        </div>
     );
 });
 

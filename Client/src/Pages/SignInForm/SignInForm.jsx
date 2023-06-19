@@ -1,22 +1,22 @@
-import React, {useContext} from 'react';
-import {Formik, Form, Field, ErrorMessage} from 'formik';
+import React, { useContext } from 'react';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import TextInput from '../../Components/TextInput/TextInput';
 import Select from '../../Components/Select/Select';
-import {Context} from '../../index';
-import {useNavigate} from 'react-router-dom';
+import { Context } from '../../index';
+import { useNavigate } from 'react-router-dom';
 
 import './SignInForm.scss';
 
 const SignInForm = () => {
     const navigate = useNavigate();
-    const {store} = useContext(Context);
+    const { store } = useContext(Context);
 
     const RoleSelectOptions = [
-        {value: 'Creator', label: 'Creator'},
-        {value: 'User', label: 'User'},
-        {value: 'Reviewer', label: 'Reviewer'},
+        { value: 'Creator', label: 'Creator' },
+        { value: 'User', label: 'User' },
+        { value: 'Reviewer', label: 'Reviewer' },
     ];
 
     return (
@@ -41,13 +41,13 @@ const SignInForm = () => {
                         password: Yup.string().required("Це обов'язково!"),
                         role: Yup.string().required("Це обов'язково!"),
                     })}
-                    onSubmit={(values, {resetForm}) => {
+                    onSubmit={(values, { resetForm }) => {
                         store.login(values.email, values.password, values.role);
                         navigate('/forms');
                         resetForm();
                     }}
                 >
-                    {({isValid, isSubmitting, errors, touched}) => (
+                    {({ isValid, isSubmitting, errors, touched }) => (
                         <Form className="SignIn__form">
                             <div className="SignUp__input-box">
                                 <i className="bi bi-envelope"></i>
