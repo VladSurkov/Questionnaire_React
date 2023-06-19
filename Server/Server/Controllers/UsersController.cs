@@ -83,7 +83,14 @@ namespace Server.Controllers
 
             string token = _tokenService.CreateToken(user);
 
-            return Ok(token);
+            var result = new LoginResponse { Token = token };
+
+            result.FirstName = user.FirstName;
+            result.SecondName = user.SecondName;
+            result.Email = user.Email;
+            result.Token = token;
+
+            return Ok(result);
         }
 
         [HttpGet("testauth")]

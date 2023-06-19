@@ -56,7 +56,6 @@ const SignUpForm = () => {
                         role: Yup.string().required("Це обов'язково!"),
                     })}
                     onSubmit={(values) => {
-                        // console.log(JSON.stringify(values, null, 2))
                         store.register(
                             values.email,
                             values.password,
@@ -64,7 +63,7 @@ const SignUpForm = () => {
                             values.secondName,
                             values.role,
                         );
-                        // console.log(values.email);
+                        // resetForm();
                     }}
                 >
                     {({ isValid, isSubmitting }) => (
@@ -128,7 +127,13 @@ const SignUpForm = () => {
 
                             <div className="SignUp__link">
                                 Вже маєте обліковий запис?
-                                <NavLink end to="/SignIn">Зареєструватися у системі</NavLink>.
+                                <NavLink
+                                    end
+                                    to="/SignIn"
+                                >
+                                    Авторизуватися у системі
+                                </NavLink>
+                                .
                             </div>
 
                             <button
