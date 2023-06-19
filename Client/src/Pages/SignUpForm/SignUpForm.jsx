@@ -5,11 +5,18 @@ import { Context } from '../../index';
 import { NavLink } from 'react-router-dom';
 
 import TextInput from '../../Components/TextInput/TextInput';
+import Select from '../../Components/Select/Select';
 
 import './SignUpForm.scss';
 
 const SignUpForm = () => {
     const { store } = useContext(Context);
+
+    const RoleSelectOptions = [
+        { value: 'Creator', label: 'Creator' },
+        { value: 'User', label: 'User' },
+        { value: 'Reviewer', label: 'Reviewer' },
+    ];
 
     return (
         <div className="SignUp">
@@ -66,7 +73,7 @@ const SignUpForm = () => {
                         resetForm();
                     }}
                 >
-                    {({ isValid, isSubmitting }) => (
+                    {({ isValid, isSubmitting, errors, touched }) => (
                         <Form className="SignUp__form">
                             <div className="SignUp__input-box">
                                 <i className="bi bi-person"></i>
@@ -104,25 +111,12 @@ const SignUpForm = () => {
                                 />
                             </div>
 
-                            <div className="SignUp__select">
-                                <label htmlFor="role">Оберіть роль:</label>
-
-                                <Field
-                                    name="role"
-                                    id="role"
-                                    as="select"
-                                >
-                                    <option value="">Не обрано</option>
-                                    <option value="Creator">Creator</option>
-                                    <option value="User">User</option>
-                                    <option value="Reviewer">Reviewer</option>
-                                </Field>
-                            </div>
-
-                            <ErrorMessage
-                                className="error"
+                            <Select
                                 name="role"
-                                component="div"
+                                label="Оберіть роль:"
+                                options={RoleSelectOptions}
+                                error={errors.role}
+                                touched={touched.role}
                             />
 
                             <div className="SignUp__link">

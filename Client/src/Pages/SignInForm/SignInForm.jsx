@@ -3,12 +3,19 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { NavLink } from 'react-router-dom';
 import TextInput from '../../Components/TextInput/TextInput';
+import Select from '../../Components/Select/Select';
 import { Context } from '../../index';
 
 import './SignInForm.scss';
 
 const SignInForm = () => {
     const { store } = useContext(Context);
+
+    const RoleSelectOptions = [
+        { value: 'Creator', label: 'Creator' },
+        { value: 'User', label: 'User' },
+        { value: 'Reviewer', label: 'Reviewer' },
+    ];
 
     return (
         <div className="SignIn">
@@ -37,7 +44,7 @@ const SignInForm = () => {
                         resetForm();
                     }}
                 >
-                    {({ isValid, isSubmitting }) => (
+                    {({ isValid, isSubmitting, errors, touched }) => (
                         <Form className="SignIn__form">
                             <div className="SignUp__input-box">
                                 <i className="bi bi-envelope"></i>
@@ -57,25 +64,12 @@ const SignInForm = () => {
                                 />
                             </div>
 
-                            <div className="SignUp__select">
-                                <label htmlFor="role">Оберіть роль:</label>
-
-                                <Field
-                                    name="role"
-                                    id="role"
-                                    as="select"
-                                >
-                                    <option value="">Не обрано</option>
-                                    <option value="Creator">Creator</option>
-                                    <option value="User">User</option>
-                                    <option value="Reviewer">Reviewer</option>
-                                </Field>
-                            </div>
-
-                            <ErrorMessage
-                                className="error"
+                            <Select
                                 name="role"
-                                component="div"
+                                label="Оберіть роль:"
+                                options={RoleSelectOptions}
+                                error={errors.role}
+                                touched={touched.role}
                             />
 
                             <div className="SignIn__link">
