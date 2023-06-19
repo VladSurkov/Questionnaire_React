@@ -1,14 +1,16 @@
-import React, { useContext } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import React, {useContext} from 'react';
+import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import TextInput from '../../Components/TextInput/TextInput';
-import { Context } from '../../index';
+import {Context} from '../../index';
+import {useNavigate} from 'react-router-dom';
 
 import './SignInForm.scss';
 
 const SignInForm = () => {
-    const { store } = useContext(Context);
+    const navigate = useNavigate();
+    const {store} = useContext(Context);
 
     return (
         <div className="SignIn">
@@ -32,12 +34,13 @@ const SignInForm = () => {
                         password: Yup.string().required("Це обов'язково!"),
                         role: Yup.string().required("Це обов'язково!"),
                     })}
-                    onSubmit={(values, { resetForm }) => {
+                    onSubmit={(values, {resetForm}) => {
                         store.login(values.email, values.password, values.role);
+                        navigate('/forms');
                         resetForm();
                     }}
                 >
-                    {({ isValid, isSubmitting }) => (
+                    {({isValid, isSubmitting}) => (
                         <Form className="SignIn__form">
                             <div className="SignUp__input-box">
                                 <i className="bi bi-envelope"></i>

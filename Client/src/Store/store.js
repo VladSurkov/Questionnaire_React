@@ -1,7 +1,8 @@
 import axios from 'axios';
 import AuthService from '../Services/AuthService';
-import { API_URL } from '../Http';
-import { observable, action, makeAutoObservable } from 'mobx';
+import {API_URL} from '../Http';
+import {observable, action, makeAutoObservable} from 'mobx';
+import FormService from '../Services/FormService';
 
 export default class Store {
     user = {};
@@ -41,6 +42,16 @@ export default class Store {
             });
         } catch (e) {
             console.log(e.response?.data?.message);
+        }
+    }
+
+    async getAllForms() {
+        try {
+            const response = await FormService.getAllForms();
+            console.log(response);
+            return response.data;
+        } catch (e) {
+            console.log(e);
         }
     }
 }

@@ -5,17 +5,28 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './Styles/App.css';
 
 function App() {
-  return (
-		<Router>
-			<div className="App">
-				<Routes>
-					<Route exact path = '/' element={<SignUpForm/>}/>
-					<Route path = '/SignIn' element={<SignInForm/>}/>
-                    <Route path = '/forms' element={<Forms/>}/>
-				</Routes>
-			</div>
-		</Router>
-  );
+    return (
+        <Router>
+            <div className="App">
+                <Routes>
+                    <Route
+                        exact
+                        path="/"
+                        element={<SignUpForm />}
+                    />
+                    <Route
+                        path="/SignIn"
+                        element={<SignInForm />}
+                    />
+                    <Route
+                        path="/forms"
+                        element={<Forms />}
+                    />
+                    {/* <Route path = '/form?formId=${formId}' element={<Forms/>}/> */}
+                </Routes>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
