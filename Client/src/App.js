@@ -1,6 +1,7 @@
 import SignUpForm from './Pages/SignUpForm/SignUpForm';
 import SignInForm from './Pages/SignInForm/SignInForm';
 import Forms from './Components/Forms/Forms';
+import Form from './Components/Form/Form';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './Styles/App.css';
 import NewForm from './Pages/NewForm/NewForm';
@@ -27,7 +28,7 @@ function App() {
                         path="/newForm"
                         element={<NewForm />}
                     />
-                    {/* <Route path = '/form?formId=${formId}' element={<Forms/>}/> */}
+                    <Route path = '/form' element={<Form/>}/>
                 </Routes>
             </div>
         </Router>

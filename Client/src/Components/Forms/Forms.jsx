@@ -7,7 +7,8 @@ import {observer} from 'mobx-react';
 
 const Forms = observer(() => {
     const {store} = useContext(Context);
-    const role = store.user.role;
+    // const role = store.user.role;
+    const role = "Reviewer";
 
     if (role === 'Creator') {
         return <CreatorPage />;
