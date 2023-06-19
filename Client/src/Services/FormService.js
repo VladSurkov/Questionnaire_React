@@ -27,4 +27,8 @@ export default class FormService {
             },
         });
     }
+
+    static getAllUserForms() {
+        return $api.get('/Form/getUserForms');
+    }
 }

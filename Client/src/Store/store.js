@@ -122,29 +122,32 @@ export default class Store {
     // Reviewer
     async getAllUserForms() {
         try {
-            const data =
-                '[\
-                {\
-                  "userFormId": "dd7fe8e0-0a7e-4d15-90d8-81880f5c1291",\
-                  "user": "Stas Surkov",\
-                  "titleForm": "Тест по школе",\
-                  "formStatus": "Filled"\
-                },\
-                {\
-                  "userFormId": "92ac311f-ddac-42d8-9ed2-cc35f548cddd",\
-                  "user": "Stas Surkov",\
-                  "titleForm": "Самый лучший спорт",\
-                  "formStatus": "Filled"\
-                },\
-                {\
-                  "userFormId": "112c5842-8b11-43b4-83d2-081113a885cb",\
-                  "user": "Kolya Boomich",\
-                  "titleForm": "Самые лучшие автомобили в мире",\
-                  "formStatus": "Filled"\
-                }\
-            ]';
+            const response = await FormService.getAllUserForms();
+            console.log(response);
+            // const data =
+            //     '[\
+            //     {\
+            //       "userFormId": "dd7fe8e0-0a7e-4d15-90d8-81880f5c1291",\
+            //       "user": "Stas Surkov",\
+            //       "titleForm": "Тест по школе",\
+            //       "formStatus": "Filled"\
+            //     },\
+            //     {\
+            //       "userFormId": "92ac311f-ddac-42d8-9ed2-cc35f548cddd",\
+            //       "user": "Stas Surkov",\
+            //       "titleForm": "Самый лучший спорт",\
+            //       "formStatus": "Filled"\
+            //     },\
+            //     {\
+            //       "userFormId": "112c5842-8b11-43b4-83d2-081113a885cb",\
+            //       "user": "Kolya Boomich",\
+            //       "titleForm": "Самые лучшие автомобили в мире",\
+            //       "formStatus": "Filled"\
+            //     }\
+            // ]';
 
-            return JSON.parse(data);
+            // return JSON.parse(data);
+            return response.data;
         } catch (e) {
             console.log(e);
         }
