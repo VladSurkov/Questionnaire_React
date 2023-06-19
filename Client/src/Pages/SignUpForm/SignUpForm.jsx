@@ -55,8 +55,8 @@ const SignUpForm = () => {
 
                         role: Yup.string().required("Це обов'язково!"),
                     })}
-                    onSubmit={(values) => {
-                        // console.log(JSON.stringify(values, null, 2))
+                    onSubmit={(values, { resetForm }) => {
+                        
                         store.register(
                             values.email,
                             values.password,
@@ -64,7 +64,7 @@ const SignUpForm = () => {
                             values.secondName,
                             values.role,
                         );
-                        // console.log(values.email);
+                        resetForm();
                     }}
                 >
                     {({ isValid, isSubmitting }) => (

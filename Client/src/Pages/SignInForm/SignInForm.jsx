@@ -30,7 +30,7 @@ const SignInForm = () => {
                         role: Yup.string()
                                 .required("Це обов'язково!")
                     })}
-                    onSubmit = {values => console.log(JSON.stringify(values, null, 2))}>
+                    onSubmit = {(values, { resetForm }) => console.log(JSON.stringify(values, null, 2))}>
 
                 
                 {({isValid, isSubmitting}) => (
