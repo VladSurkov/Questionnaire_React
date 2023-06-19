@@ -17,14 +17,14 @@ namespace Server.Services.CreateFormService
             _context = context;
             _userService = userService;
         }
-        public void CreateForm(string formTitle, string creator, string[] questions) // Task<ActionResult<FormModel>>
+        public void CreateForm(string formTitle, string creator, List<string> questions) // Task<ActionResult<FormModel>>
         {
             var newForm = new FormModel();
             newForm.Creator = creator;
             newForm.FormTitle = formTitle;
             _context.Forms.Add(newForm);
 
-            for (int i = 0; i < questions.Length; i++)
+            for (int i = 0; i < questions.Count; i++)
             {
                 var newQuestion = new QuestionModel();
                 newQuestion.FormId = newForm.Id;

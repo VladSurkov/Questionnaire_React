@@ -15,6 +15,7 @@ export default class Store {
         this.user = user;
     }
 
+    // Auth
     async register(email, password, firstName, secondName, role) {
         try {
             const response = await AuthService.register(
@@ -45,6 +46,24 @@ export default class Store {
         }
     }
 
+    // role = Creator
+    async createNewForm(title, questions) {
+        try {
+            const questionsValue = [];
+            questions.map((question) => {
+                questionsValue.push(question.value);
+            });
+            const response = await FormService.createNewForm(
+                title,
+                questionsValue,
+            );
+            console.log(response);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    // role = User
     async getAllForms() {
         try {
             const response = await FormService.getAllForms();

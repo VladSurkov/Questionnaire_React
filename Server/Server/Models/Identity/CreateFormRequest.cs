@@ -4,6 +4,6 @@
     {
         public string FormTitle { get; set; }
 
-        public string[] Questions { get; set; }
+        public List<string> Questions { get; set; }
     }
 }

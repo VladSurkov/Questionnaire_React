@@ -6,7 +6,7 @@ namespace Server.Services.CreateFormService
 {
     public interface IFormService
     {
-        public void CreateForm(string titleForm, string creator, string[] questions);
+        public void CreateForm(string titleForm, string creator, List<string> questions);
 
         public List<GetAllFormResponse> GetAllForms();
 

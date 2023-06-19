@@ -3,6 +3,7 @@ import SignInForm from './Pages/SignInForm/SignInForm';
 import Forms from './Components/Forms/Forms';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './Styles/App.css';
+import NewForm from './Pages/NewForm/NewForm';
 
 function App() {
     return (
@@ -21,6 +22,10 @@ function App() {
                     <Route
                         path="/forms"
                         element={<Forms />}
+                    />
+                    <Route
+                        path="/newForm"
+                        element={<NewForm />}
                     />
                     {/* <Route path = '/form?formId=${formId}' element={<Forms/>}/> */}
                 </Routes>
