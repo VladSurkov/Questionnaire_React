@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import UserPage from '../../Pages/UserPage/UserPage';
+import CreatorPage from '../../Pages/CreatorPage/CreatorPage';
 import ReviewerPage from '../../Pages/ReviewerPage/ReviewerPage';
 import { Context } from '../../index';
 
@@ -10,8 +11,7 @@ const Forms = () => {
     const role = "User";
     
     if (role === "Creator") {
-        // return <CreatorPage />
-        return <></>;
+        return <CreatorPage />
     }
     else if (role === "User") {
         return <UserPage />;
