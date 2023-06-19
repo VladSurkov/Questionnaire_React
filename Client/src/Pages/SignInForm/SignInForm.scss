@@ -1,4 +1,12 @@
 
+.error{
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: center;
+    
+}
+
 .SignIn{
     position: absolute;
     top: 50%;
@@ -17,6 +25,7 @@
     }
 
     &__form{
+        position: relative;
         width: 80%;
         display: flex;
         flex-direction: column;
@@ -24,28 +33,57 @@
         align-items: center;
         margin-top: 20px;
 
+
         input{
             width: 100%;
-            margin-bottom: 20px;
             height: 40px;
-            padding: 0 15px;
+            padding: 0 30px;
             background: transparent;
             border: 1px solid rgb(0, 0, 0);
             border-radius: 10px;
             outline: none;
             transition: .4s ease-in;
+            &.errored{
+                border: 1px solid red;
+                &::placeholder{
+                    color: red;
+                }
+            }
+
             &:focus{
                 border: 1px solid #1966b3;
                 color: #1966b3;
                 &::placeholder{
                     color: #1966b3;
                 }
+
             }
+
             &::placeholder{
                 font-size: 14px;
                 transition: .4s ease-in;
             }
         }
+    }
+
+    &__input-box{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+
+        i{
+            position: absolute;
+            top: 12px;
+            left: -23px;
+            text-align: left;
+            align-self: flex-start;
+            
+        }
+
     }
 
     &__title{
@@ -120,6 +158,16 @@
         &:hover{
             background: #70b8ff;
             color: #000;
+        }
+
+        &:disabled{
+            cursor: not-allowed;
+            opacity: .7;
+            background: #5e656b;
+            &:hover{
+                background: #5e656b;
+                color: #fff;
+            }
         }
 
     }

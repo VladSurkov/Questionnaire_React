@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Context } from '../../index';
+import { NavLink } from 'react-router-dom';
 
 import TextInput from '../../Components/TextInput/TextInput';
 
@@ -126,8 +127,8 @@ const SignUpForm = () => {
                             />
 
                             <div className="SignUp__link">
-                                Вже маєте обліковий запис?{' '}
-                                <a href="#">Увійти в систему</a>.
+                                Вже маєте обліковий запис?
+                                <NavLink end to="/SignIn">Зареєструватися у системі</NavLink>.
                             </div>
 
                             <button
