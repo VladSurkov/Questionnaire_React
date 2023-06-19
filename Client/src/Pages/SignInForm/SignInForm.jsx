@@ -32,9 +32,10 @@ const SignInForm = () => {
                         password: Yup.string().required("Це обов'язково!"),
                         role: Yup.string().required("Це обов'язково!"),
                     })}
-                    onSubmit={(values) =>
-                        store.login(values.email, values.password, values.role)
-                    }
+                    onSubmit={(values, { resetForm }) => {
+                        store.login(values.email, values.password, values.role);
+                        resetForm();
+                    }}
                 >
                     {({ isValid, isSubmitting }) => (
                         <Form className="SignIn__form">

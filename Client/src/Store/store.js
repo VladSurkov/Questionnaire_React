@@ -32,7 +32,7 @@ export default class Store {
     async login(email, password, role) {
         try {
             const response = await AuthService.login(email, password, role);
-            // console.log(response.data);
+            console.log(response);
             localStorage.setItem('token', response.data);
         } catch (e) {
             console.log(e.response?.data?.message);

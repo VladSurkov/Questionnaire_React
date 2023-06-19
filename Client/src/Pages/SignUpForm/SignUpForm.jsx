@@ -131,7 +131,7 @@ const SignUpForm = () => {
                                     end
                                     to="/SignIn"
                                 >
-                                    Зареєструватися у системі
+                                    Авторизуватись у системі
                                 </NavLink>
                                 .
                             </div>
