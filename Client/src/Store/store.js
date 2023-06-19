@@ -48,7 +48,7 @@ export default class Store {
     async getAllForms() {
         try {
             const response = await FormService.getAllForms();
-            console.log(response);
+            console.log(response.data);
             return response.data;
         } catch (e) {
             console.log(e);

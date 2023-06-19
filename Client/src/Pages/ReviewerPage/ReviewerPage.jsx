@@ -1,10 +1,9 @@
 import React from 'react';
 
+import './ReviewerPage.scss';
 
 const ReviewerPage = () => {
-    return (
-        <>ReviewerPage</>
-    )
-}
+    return <></>;
+};
 
 export default ReviewerPage;

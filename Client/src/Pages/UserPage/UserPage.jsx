@@ -12,8 +12,13 @@ const UserPage = observer(() => {
     const [forms, setForms] = useState([]);
     const UPDATE_MS = 60000;
 
-    const getForms = () => {
-        const forms_data = store.getAllForms();
+    const updateForms = () => {
+        store
+            .getAllForms()
+            .then((result) => {
+                setForms(result);
+            })
+            .catch((e) => console.log(e));
 
         // const rawForms =
         //     '[\
@@ -35,14 +40,14 @@ const UserPage = observer(() => {
         // ]';
         // const forms_data = JSON.parse(rawForms);
 
-        return forms_data;
+        // return forms_data;
     };
 
     useEffect(() => {
-        setForms(getForms());
+        updateForms();
 
         const interval = setInterval(() => {
-            setForms(getForms());
+            updateForms();
             console.log('update');
         }, UPDATE_MS);
 
