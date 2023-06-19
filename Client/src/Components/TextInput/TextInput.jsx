@@ -9,7 +9,7 @@ const TextInput = ({...props}) =>{
 
     return(
         <>
-            <input {...props} {...field} className={isError ? "errored" : ''}/>
+            <input {...props} {...field} className={isError ? "errored" : ''}/> 
             
             <ErrorMessage 
                 className="error" 
