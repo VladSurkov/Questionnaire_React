@@ -1,15 +1,15 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
+
 import TextInput from '../../Components/TextInput/TextInput';
-import { Context } from '../../index';
+
 import './SignUpForm.scss';
 
 
 
 const SignUpForm = () => {
 
-    const {store} = useContext(Context);
 
     return (
         <div className="SignUp">
@@ -50,7 +50,7 @@ const SignUpForm = () => {
                                 .required("Це обов'язково!")
                     })}
 
-                    onSubmit = {values => store.register(values.email, values.password, values.firstName, values.secondName, values.role)}
+                    onSubmit = {values => console.log(JSON.stringify(values, null, 2))}
                     >
 
                     {({isValid, isSubmitting}) => (
