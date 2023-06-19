@@ -1,34 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import { Context } from '../../index';
+import Form from './Form';
+import { observer } from 'mobx-react';
 
 import './UserPage.scss';
-
-
-const Form = (formId, creator, formTitle) => {
-    const navigate = useNavigate();
-    const goToForm = () => navigate({
-        pathname: '/form',
-        search: `?formId=${formId}`,
-    });
-
-    return (
-        <div className="form">
-            <div className="form__title">{formTitle}</div>
-            <div className="from__creator">{creator}</div>
-            <button onClick={goToForm()}>Open Form</button>
-        </div>
-    )
-}
 
 
 const UserPage = () => {
     const { store } = useContext(Context);
     const [forms, setForms] = useState();
-    const UPDATE_MS = 10000;
+    const UPDATE_MS = 60000;
 
     const getForms = () => {
-        // const forms = store.getAllForms();
+        // const forms_data = store.getAllForms();
 
         const rawForms = '[\
             {\
@@ -47,11 +31,11 @@ const UserPage = () => {
                 "formTitle": "Самые лучшие автомобили в мире"\
             }\
         ]';
-        const forms = JSON.parse(rawForms);
+        const forms_data = JSON.parse(rawForms);
 
         return (
             <>
-                {forms.map(form => (
+                {forms_data.map(form => (
                     Form(form.formId, form.creator, form.formTitle)
                 ))}
             </>
@@ -59,8 +43,11 @@ const UserPage = () => {
     }
 
     useEffect(() => {
+        setForms(getForms());
+
         const interval = setInterval(() => {
             setForms(getForms());
+            console.log("update");
         }, UPDATE_MS);
 
         return () => clearInterval(interval);
