@@ -67,16 +67,63 @@ export default class Store {
     async getAllForms() {
         try {
             const response = await FormService.getAllForms();
-            console.log(response.data);
+            // console.log(response.data);
             return response.data;
         } catch (e) {
             console.log(e);
         }
     }
 
+    async getForm(formId) {
+        try {
+            const response = await FormService.getForm(formId);
+            console.log(response);
+            // const data =
+            //     '{\
+            //     "formTitle": "Самые лучшие автомобили в мире",\
+            //     "creator": "Anton Kolich",\
+            //     "questions": [\
+            //       {\
+            //         "id": "285530bf-96dc-4e00-b8cd-a8175c8ee0f7",\
+            //         "formId": "07adc9ad-ccb7-45cf-8434-ce2b1d9a9d85",\
+            //         "question": "Какая машина самая быстрая?"\
+            //       },\
+            //       {\
+            //         "id": "5a1fa966-ce37-4cb1-bf06-da448f108003",\
+            //         "formId": "07adc9ad-ccb7-45cf-8434-ce2b1d9a9d85",\
+            //         "question": "Какая машина самая мощная?"\
+            //       },\
+            //       {\
+            //         "id": "82ed7c7c-31c9-4c43-91c3-3dfa78c7599c",\
+            //         "formId": "07adc9ad-ccb7-45cf-8434-ce2b1d9a9d85",\
+            //         "question": "Какая машина самая имеет 9 колес?"\
+            //       },\
+            //       {\
+            //         "id": "fb49ece8-1a44-4650-8bdb-189b8f6d63c5",\
+            //         "formId": "07adc9ad-ccb7-45cf-8434-ce2b1d9a9d85",\
+            //         "question": "Какая машина самая красивая?"\
+            //       }\
+            //     ]\
+            //   }';
+
+            // return JSON.parse(data);
+            return response.data;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async sendUserForm(formId, data) {
+        // console.log('sendUserForm', formId, data);
+        const response = await FormService.sendUserForm(formId, data);
+        console.log(response);
+    }
+
+    // Reviewer
     async getAllUserForms() {
         try {
-            const data = '[\
+            const data =
+                '[\
                 {\
                   "userFormId": "dd7fe8e0-0a7e-4d15-90d8-81880f5c1291",\
                   "user": "Stas Surkov",\
@@ -95,50 +142,11 @@ export default class Store {
                   "titleForm": "Самые лучшие автомобили в мире",\
                   "formStatus": "Filled"\
                 }\
-            ]'
+            ]';
 
             return JSON.parse(data);
         } catch (e) {
             console.log(e);
         }
-    }
-
-    async getForm(formId) {
-        try {
-            const data = '{\
-                "formTitle": "Самые лучшие автомобили в мире",\
-                "creator": "Anton Kolich",\
-                "questions": [\
-                  {\
-                    "id": "285530bf-96dc-4e00-b8cd-a8175c8ee0f7",\
-                    "formId": "07adc9ad-ccb7-45cf-8434-ce2b1d9a9d85",\
-                    "question": "Какая машина самая быстрая?"\
-                  },\
-                  {\
-                    "id": "5a1fa966-ce37-4cb1-bf06-da448f108003",\
-                    "formId": "07adc9ad-ccb7-45cf-8434-ce2b1d9a9d85",\
-                    "question": "Какая машина самая мощная?"\
-                  },\
-                  {\
-                    "id": "82ed7c7c-31c9-4c43-91c3-3dfa78c7599c",\
-                    "formId": "07adc9ad-ccb7-45cf-8434-ce2b1d9a9d85",\
-                    "question": "Какая машина самая имеет 9 колес?"\
-                  },\
-                  {\
-                    "id": "fb49ece8-1a44-4650-8bdb-189b8f6d63c5",\
-                    "formId": "07adc9ad-ccb7-45cf-8434-ce2b1d9a9d85",\
-                    "question": "Какая машина самая красивая?"\
-                  }\
-                ]\
-              }'
-            
-            return JSON.parse(data);
-        } catch (e) {
-            console.log(e);
-        }
-    }
-
-    async sendUserForm(formId, data) {
-        console.log("sendUserForm", formId, data);
     }
 }

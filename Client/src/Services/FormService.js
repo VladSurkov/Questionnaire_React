@@ -11,4 +11,20 @@ export default class FormService {
     static getAllForms() {
         return $api.get('/Form/getAllForms');
     }
+
+    static getForm(formId) {
+        return $api.get('/Form/getForm', {
+            params: {
+                id: formId,
+            },
+        });
+    }
+
+    static sendUserForm(formId, data) {
+        return $api.post('/Form/fillForm', data, {
+            params: {
+                FormId: formId,
+            },
+        });
+    }
 }
