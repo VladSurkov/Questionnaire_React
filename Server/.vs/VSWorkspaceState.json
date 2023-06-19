@@ -6,6 +6,6 @@
     "\\Server\\Models",
     "\\Server\\Models\\Identity"
   ],
-  "SelectedNode": "\\Server\\Models\\Account.cs",
+  "SelectedNode": "\\Server\\Controllers\\UsersController.cs",
   "PreviewInSolutionExplorer": false
 }

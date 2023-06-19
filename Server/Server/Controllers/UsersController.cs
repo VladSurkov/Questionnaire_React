@@ -88,6 +88,7 @@ namespace Server.Controllers
             result.FirstName = user.FirstName;
             result.SecondName = user.SecondName;
             result.Email = user.Email;
+            result.Role = (user.Role).ToString();
             result.Token = token;
 
             return Ok(result);

@@ -32,8 +32,13 @@ export default class Store {
     async login(email, password, role) {
         try {
             const response = await AuthService.login(email, password, role);
-            console.log(response);
-            localStorage.setItem('token', response.data);
+            localStorage.setItem('token', response.data.token);
+            this.setUser({
+                firstName: response.data.firstName,
+                secondName: response.data.secondName,
+                email: response.data.email,
+                role: response.data.role,
+            });
         } catch (e) {
             console.log(e.response?.data?.message);
         }
