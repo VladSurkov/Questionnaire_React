@@ -44,6 +44,7 @@ const ReviewerFormPage = observer(() => {
 
     const sendReview = () => {
         store.sendReview(userFormId, status, comment);
+        setComment('');
     };
 
     return (
@@ -53,7 +54,9 @@ const ReviewerFormPage = observer(() => {
                     <div className="ReviewerFormPage__title">
                         {form.formTitle}
                     </div>
-                    <div className="ReviewerFormPage__text">{form.user}</div>
+                    <div className="ReviewerFormPage__text">
+                        User: {form.user}
+                    </div>
                     {form.answers.map((answer) => {
                         return (
                             <section className="ReviewerFormPage__answer-question">
@@ -68,7 +71,7 @@ const ReviewerFormPage = observer(() => {
                     })}
 
                     <div
-                        className={`status-btn ${status}`}
+                        className={`ReviewerFormPage__status-btn ${status}`}
                         onClick={handleStatusBtnToggle}
                     >
                         <div className="status-btn__choise-text">Approved</div>
@@ -84,11 +87,16 @@ const ReviewerFormPage = observer(() => {
                             <textarea
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}
-                            ></textarea>
+                            />
                         </div>
                     )}
 
-                    <button onClick={sendReview}>Send Review</button>
+                    <button
+                        onClick={sendReview}
+                        className="ReviewerFormPage__sendBtn"
+                    >
+                        Send Review
+                    </button>
                 </div>
             ) : (
                 <></>

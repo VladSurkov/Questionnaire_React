@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    // align-items: center;
     background-color: #fff;
     border-radius: 10px;
     padding: 25px;
@@ -17,17 +17,19 @@
     }
 
     &__answer-question__question {
+        font-weight: bold;
         margin-bottom: 5px;
     }
 
     &__answer-question__answer {
-        color: red;
+        // color: red;
     }
 
     &__title {
         font-size: 32px;
         font-weight: 700;
         margin: 0 0 25px 0;
+        text-align: center;
     }
 
     &__text {
@@ -39,7 +41,7 @@
         }
     }
 
-    &__btn {
+    &__sendBtn {
         margin-top: 35px;
         width: 100%;
         height: 40px;
@@ -52,6 +54,7 @@
         font-weight: 700;
         font-size: 16px;
         transition: 0.4s ease-in;
+        cursor: pointer;
 
         &:hover {
             background: #70b8ff;
@@ -67,5 +70,27 @@
                 color: #fff;
             }
         }
+    }
+
+    &__status-btn {
+        margin: 0 auto;
+        width: 200px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__status {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__comment {
+        padding-top: 5px;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }

@@ -1,19 +1,17 @@
-
-.error{
+.error {
     color: red;
     font-size: 14px;
     margin-top: 5px;
     text-align: center;
-    
 }
 
-.SignIn{
+.SignIn {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    &__container{
+    &__container {
         width: 300px;
         display: flex;
         flex-direction: column;
@@ -24,7 +22,7 @@
         padding: 25px;
     }
 
-    &__form{
+    &__form {
         position: relative;
         width: 80%;
         display: flex;
@@ -33,8 +31,7 @@
         align-items: center;
         margin-top: 20px;
 
-
-        input{
+        input {
             width: 100%;
             height: 40px;
             padding: 0 30px;
@@ -42,31 +39,30 @@
             border: 1px solid rgb(0, 0, 0);
             border-radius: 10px;
             outline: none;
-            transition: .4s ease-in;
-            &.errored{
+            transition: 0.4s ease-in;
+            &.errored {
                 border: 1px solid red;
-                &::placeholder{
+                &::placeholder {
                     color: red;
                 }
             }
 
-            &:focus{
+            &:focus {
                 border: 1px solid #1966b3;
                 color: #1966b3;
-                &::placeholder{
+                &::placeholder {
                     color: #1966b3;
                 }
-
             }
 
-            &::placeholder{
+            &::placeholder {
                 font-size: 14px;
-                transition: .4s ease-in;
+                transition: 0.4s ease-in;
             }
         }
     }
 
-    &__input-box{
+    &__input-box {
         position: relative;
         display: flex;
         flex-direction: column;
@@ -75,73 +71,69 @@
         width: 100%;
         margin-bottom: 20px;
 
-        i{
+        i {
             position: absolute;
             top: 12px;
             left: -23px;
             text-align: left;
             align-self: flex-start;
-            
         }
-
     }
 
-    &__title{
+    &__title {
         font-size: 32px;
         font-weight: 700;
         margin: 0 0 25px 0;
-
     }
 
-    &__text{
+    &__text {
         font-size: 16px;
         text-align: center;
-        span{
+        span {
             color: #05a3ff;
         }
     }
 
-    &__select{
+    &__select {
         margin-top: 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
 
-        label{
+        label {
             font-size: 16px;
         }
 
-        select{
+        select {
             height: 30px;
             padding: 0 15px;
             background: transparent;
             border: 1px solid rgb(0, 0, 0);
             border-radius: 10px;
             outline: none;
-            transition: .4s ease-in;
+            transition: 0.4s ease-in;
             color: #000;
             cursor: pointer;
-            &:focus{
+            &:focus {
                 border: 1px solid #1966b3;
             }
         }
-       
     }
 
-    &__link{
+    &__link {
         text-align: center;
         margin-top: 25px;
-        a{
-            color:#1966b3;
-            &:hover{
-                color:#70b8ff;
+        a {
+            color: #1966b3;
+            &:hover {
+                color: #70b8ff;
                 text-decoration: none;
             }
         }
     }
 
-    &__btn{
+    &__btn {
         margin-top: 35px;
         width: 100%;
         height: 40px;
@@ -153,22 +145,22 @@
         color: #fff;
         font-weight: 700;
         font-size: 16px;
-        transition: .4s ease-in;
+        transition: 0.4s ease-in;
+        cursor: pointer;
 
-        &:hover{
+        &:hover {
             background: #70b8ff;
             color: #000;
         }
 
-        &:disabled{
+        &:disabled {
             cursor: not-allowed;
-            opacity: .7;
+            opacity: 0.7;
             background: #5e656b;
-            &:hover{
+            &:hover {
                 background: #5e656b;
                 color: #fff;
             }
         }
-
     }
 }
