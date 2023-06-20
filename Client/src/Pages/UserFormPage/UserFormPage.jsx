@@ -3,6 +3,8 @@ import {useSearchParams} from 'react-router-dom';
 import {Context} from '../../index';
 import {observer} from 'mobx-react';
 
+import './UserFormPage.scss';
+
 class Question extends Component {
     constructor(props) {
         super(props);
@@ -32,15 +34,17 @@ class Question extends Component {
 
         return (
             <div
-                className="question"
+                className="UserFormPage__question"
                 key={id}
             >
-                <div className="question__question">{question}</div>
+                <div className="UserFormPage__question__question">
+                    {question}
+                </div>
                 <input
                     value={answer}
                     type="text"
                     onChange={this.handleAnswerChange}
-                    className="question__answer"
+                    className="UserFormPage__answer"
                 />
             </div>
         );
@@ -110,13 +114,18 @@ const UserFormPage = observer(() => {
     }, []);
 
     return (
-        <div className="content">
+        <div className="UserFormPage">
             {!isEmpty(form) ? (
-                <div className="form">
-                    <div className="form__title">{form.formTitle}</div>
-                    <div className="form__creator">{form.creator}</div>
+                <div className="UserFormPage__form">
+                    <div className="UserFormPage__title">{form.formTitle}</div>
+                    <div className="UserFormPage__creator">{form.creator}</div>
                     {questions}
-                    <button onClick={sendForm}>Відправити форму</button>
+                    <button
+                        onClick={sendForm}
+                        className="UserFormPage__btn"
+                    >
+                        Відправити форму
+                    </button>
                 </div>
             ) : (
                 <></>

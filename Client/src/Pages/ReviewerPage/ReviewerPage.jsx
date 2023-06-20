@@ -32,7 +32,7 @@ const ReviewerPage = observer(() => {
     }, []);
 
     return (
-        <div className="content">
+        <div className="ReviewerPage">
             {forms.map((form) => {
                 return ReviewerPageForm({
                     userFormId: form.userFormId,

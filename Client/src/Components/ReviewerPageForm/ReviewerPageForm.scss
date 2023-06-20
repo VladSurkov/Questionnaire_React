@@ -1,0 +1,59 @@
+.ReviewerPageForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 25px;
+
+    &__title {
+        font-size: 32px;
+        font-weight: 700;
+        margin: 0 0 25px 0;
+    }
+
+    &__text {
+        font-size: 16px;
+        text-align: center;
+        span {
+            color: #05a3ff;
+        }
+    }
+
+    &__btn {
+        margin-top: 35px;
+        width: 100%;
+        height: 40px;
+        outline: none;
+        background: #1966b3;
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+        border: none;
+        color: #fff;
+        font-weight: 700;
+        font-size: 16px;
+        transition: 0.4s ease-in;
+
+        &:hover {
+            background: #70b8ff;
+            color: #000;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+            background: #5e656b;
+            &:hover {
+                background: #5e656b;
+                color: #fff;
+            }
+        }
+    }
+}

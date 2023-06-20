@@ -10,7 +10,14 @@ const CreatorPage = () => {
         navigate('/newForm');
     };
 
-    return <button onClick={createNewForm}>Створити форму</button>;
+    return (
+        <button
+            onClick={createNewForm}
+            className="CreatorPage__btn"
+        >
+            Створити форму
+        </button>
+    );
 };
 
 export default CreatorPage;

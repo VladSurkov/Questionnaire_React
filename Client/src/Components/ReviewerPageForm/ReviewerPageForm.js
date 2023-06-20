@@ -1,19 +1,32 @@
 import React from 'react';
 
-const ReviewerPageForm = ({userFormId, user, titleForm, formStatus, navigate}) => {
+import './ReviewerPageForm.scss';
+
+const ReviewerPageForm = ({
+    userFormId,
+    user,
+    titleForm,
+    formStatus,
+    navigate,
+}) => {
     const goToForm = () => {
         navigate(`/form?userFormId=${userFormId}`);
     };
 
     return (
         <div
-            className="form"
+            className="ReviewerPageForm"
             key={userFormId}
         >
-            <div className="form__title">{titleForm}</div>
-            <div className="from__creator">{user}</div>
-            <div className="from__status">{formStatus}</div>
-            <button onClick={goToForm}>Open Form</button>
+            <div className="ReviewerPageForm__title">{titleForm}</div>
+            <div className="ReviewerPageForm__text">{user}</div>
+            <div className="ReviewerPageForm__status">{formStatus}</div>
+            <button
+                onClick={goToForm}
+                className="ReviewerPageForm__btn"
+            >
+                Open Form
+            </button>
         </div>
     );
 };

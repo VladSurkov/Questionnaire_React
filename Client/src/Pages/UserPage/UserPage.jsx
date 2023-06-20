@@ -55,7 +55,7 @@ const UserPage = observer(() => {
     }, []);
 
     return (
-        <div className="content">
+        <div className="UserPage">
             {forms.map((form) => {
                 return UserPageForm({
                     formId: form.formId,

@@ -3,6 +3,8 @@ import {useSearchParams} from 'react-router-dom';
 import {Context} from '../../index';
 import {observer} from 'mobx-react';
 
+import './ReviewerFormPage.scss';
+
 function isEmpty(obj) {
     for (const prop in obj) {
         if (Object.hasOwn(obj, prop)) {
@@ -45,18 +47,20 @@ const ReviewerFormPage = observer(() => {
     };
 
     return (
-        <div className="content">
+        <div className="ReviewerFormPage">
             {!isEmpty(form) ? (
-                <div className="form">
-                    <div className="form__title">{form.formTitle}</div>
-                    <div className="form__user">{form.user}</div>
+                <div className="ReviewerFormPage__form">
+                    <div className="ReviewerFormPage__title">
+                        {form.formTitle}
+                    </div>
+                    <div className="ReviewerFormPage__text">{form.user}</div>
                     {form.answers.map((answer) => {
                         return (
-                            <section className="form__answer-question">
-                                <div className="form__answer-question__question">
+                            <section className="ReviewerFormPage__answer-question">
+                                <div className="ReviewerFormPage__answer-question__question">
                                     {answer.question}
                                 </div>
-                                <div className="form__answer-question__answer">
+                                <div className="ReviewerFormPage__answer-question__answer">
                                     {answer.answer}
                                 </div>
                             </section>
@@ -72,11 +76,11 @@ const ReviewerFormPage = observer(() => {
                         <div className="status-btn__choise-text">Rejected</div>
                     </div>
 
-                    <div className="form__status">{status}</div>
+                    <div className="ReviewerFormPage__status">{status}</div>
                     {status === 'Approved' ? (
                         <></>
                     ) : (
-                        <div className="comment">
+                        <div className="ReviewerFormPage__comment">
                             <textarea
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}

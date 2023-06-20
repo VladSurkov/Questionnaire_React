@@ -35,6 +35,8 @@ const NewForm = observer(() => {
     const createFormHandler = (e) => {
         e.preventDefault();
         store.createNewForm(titleForm, inputs);
+        setTitleForm('');
+        setInputs([]);
         // console.log(titleForm);
         // inputs.map((input) => console.log(input.value));
     };
@@ -42,38 +44,43 @@ const NewForm = observer(() => {
     return (
         <div className="NewForm">
             <div className="NewForm__container">
-
                 <h2 className="NewForm__title">Нова Форма</h2>
                 <div className="NewForm__text">
                     Створіть нову форму за допомогою інструментів нижче.
                 </div>
 
                 <form className="NewForm__form">
-
                     <div className="NewForm__input-box">
-                        <label htmlFor='formName'>Назва форми</label>
-                        <input id='formName' onChange={(e) => setTitleForm(e.target.value)} />
+                        <label htmlFor="formName">Назва форми</label>
+                        <input
+                            id="formName"
+                            value={titleForm}
+                            onChange={(e) => setTitleForm(e.target.value)}
+                        />
                     </div>
-                    
-
-                    
 
                     <div className="NewForm__questions">
-
                         {inputs.map((input) => (
-                            <div key={input.id} className="NewForm__input-box">
+                            <div
+                                key={input.id}
+                                className="NewForm__input-box"
+                            >
                                 <label>Питання </label>
                                 <input
                                     type="text"
                                     value={input.value}
-                                    onChange={(e) => handleInputChange(e, input.id)}
+                                    onChange={(e) =>
+                                        handleInputChange(e, input.id)
+                                    }
                                 />
-                                <button className="NewForm__btn" onClick={() => handleRemoveInput(input.id)}>
+                                <button
+                                    className="NewForm__btn"
+                                    onClick={() => handleRemoveInput(input.id)}
+                                >
                                     Видалити
                                 </button>
                             </div>
                         ))}
-
                     </div>
 
                     <button
@@ -83,8 +90,6 @@ const NewForm = observer(() => {
                     >
                         Створити питання
                     </button>
-
-                    
 
                     <button
                         className="NewForm__form-btn NewForm__btn"

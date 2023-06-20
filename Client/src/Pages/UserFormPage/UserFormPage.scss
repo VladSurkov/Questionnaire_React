@@ -1,0 +1,71 @@
+.UserFormPage {
+    &__question {
+        input {
+            width: 90%;
+            height: 40px;
+            padding: 0 15px;
+            background: transparent;
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 10px;
+            outline: none;
+            transition: 0.4s ease-in;
+            margin-bottom: 15px;
+
+            &:focus {
+                border: 1px solid #1966b3;
+                color: #1966b3;
+            }
+        }
+    }
+
+    &__question__question {
+        margin-bottom: 10px;
+    }
+
+    &__form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    &__title {
+        font-size: 32px;
+        font-weight: 700;
+        margin: 0 0 20px 0;
+        text-align: center;
+    }
+
+    &__creator {
+        font-size: 16px;
+        text-align: center;
+        margin-bottom: 15px;
+        span {
+            color: #05a3ff;
+        }
+    }
+
+    &__btn {
+        margin-top: 10px;
+        width: 100%;
+        height: 40px;
+        outline: none;
+        background: #1966b3;
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+        border: none;
+        color: #fff;
+        font-weight: 700;
+        font-size: 16px;
+        transition: 0.4s ease-in;
+
+        &:hover {
+            background: #70b8ff;
+            color: #000;
+        }
+    }
+}
