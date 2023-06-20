@@ -5,6 +5,7 @@ import ReviewerPageForm from '../../Components/ReviewerPageForm/ReviewerPageForm
 import {useNavigate} from 'react-router-dom';
 
 import './ReviewerPage.scss';
+import Header from '../../Components/Header/Header';
 
 const ReviewerPage = observer(() => {
     const navigate = useNavigate();
@@ -33,6 +34,7 @@ const ReviewerPage = observer(() => {
 
     return (
         <div className="ReviewerPage">
+            <Header/>
             {forms.map((form) => {
                 return ReviewerPageForm({
                     userFormId: form.userFormId,

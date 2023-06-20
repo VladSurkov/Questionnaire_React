@@ -4,6 +4,7 @@ import {Context} from '../../index';
 import {observer} from 'mobx-react';
 
 import './UserFormPage.scss';
+import Header from '../../Components/Header/Header';
 
 class Question extends Component {
     constructor(props) {
@@ -115,6 +116,7 @@ const UserFormPage = observer(() => {
 
     return (
         <div className="UserFormPage">
+            <Header />
             {!isEmpty(form) ? (
                 <div className="UserFormPage__form">
                     <div className="UserFormPage__title">{form.formTitle}</div>

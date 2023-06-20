@@ -4,6 +4,7 @@ import {Context} from '../../index';
 import {observer} from 'mobx-react';
 
 import './ReviewerFormPage.scss';
+import Header from '../../Components/Header/Header';
 
 function isEmpty(obj) {
     for (const prop in obj) {
@@ -49,6 +50,7 @@ const ReviewerFormPage = observer(() => {
 
     return (
         <div className="ReviewerFormPage">
+            <Header/>
             {!isEmpty(form) ? (
                 <div className="ReviewerFormPage__form">
                     <div className="ReviewerFormPage__title">

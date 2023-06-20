@@ -3,6 +3,7 @@ import {Context} from '../../index';
 import {observer} from 'mobx-react';
 import UserPageForm from '../../Components/UserPageForm/UserPageForm';
 import {useNavigate} from 'react-router-dom';
+import Header from '../../Components/Header/Header'
 
 import './UserPage.scss';
 
@@ -56,6 +57,7 @@ const UserPage = observer(() => {
 
     return (
         <div className="UserPage">
+            <Header />
             {forms.map((form) => {
                 return UserPageForm({
                     formId: form.formId,

@@ -1,8 +1,12 @@
 import React from 'react'
+import Header from '../../Components/Header/Header'
 
 const CreatorFormPage = () => {
   return (
-    <div>CreatorFormPage</div>
+    <>
+      <Header/>
+      <div>CreatorFormPage</div>
+    </>
   )
 }
 

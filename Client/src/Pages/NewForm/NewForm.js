@@ -3,6 +3,7 @@ import {Context} from '../../index';
 import {observer} from 'mobx-react';
 
 import './NewForm.scss';
+import Header from '../../Components/Header/Header';
 
 const NewForm = observer(() => {
     const {store} = useContext(Context);
@@ -43,6 +44,7 @@ const NewForm = observer(() => {
 
     return (
         <div className="NewForm">
+            <Header/>
             <div className="NewForm__container">
                 <h2 className="NewForm__title">Нова Форма</h2>
                 <div className="NewForm__text">
