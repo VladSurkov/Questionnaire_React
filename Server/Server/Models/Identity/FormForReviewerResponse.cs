@@ -6,6 +6,8 @@
 
         public string FormTitle { get; set; }
 
+        public string Status { get; set; }
+
         public List<QuestionAndAnswer> Answers { get; set; }
     }
 }

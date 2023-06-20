@@ -17,5 +17,7 @@ namespace Server.Services.CreateFormService
         public Task<List<FormsForReviewerResponse>> GetAllUserFormsForReviewer();
 
         public Task<FormForReviewerResponse> GetUserForm(Guid id);
+
+        public void GetFormById(Guid formId, string status, string comment);
     }
 }

@@ -4,6 +4,7 @@ using Server.Data;
 using Server.Models;
 using Server.Models.Identity;
 using Server.Services.UserService;
+using System.Data;
 
 namespace Server.Services.CreateFormService
 {
@@ -127,6 +128,7 @@ namespace Server.Services.CreateFormService
 
             result.User = user.FirstName + " " + user.SecondName;
             result.FormTitle = currentForm.FormTitle;
+            result.Status = (userForm.FormStatus).ToString();
 
             List<QuestionAndAnswer> answersList = new List<QuestionAndAnswer>();
 
@@ -143,6 +145,22 @@ namespace Server.Services.CreateFormService
             result.Answers = answersList;
 
             return result;
+        }
+
+        public void GetFormById(Guid formId, string status, string comment)
+        {
+            FormStatus statusForm = (FormStatus)Enum.Parse(typeof(FormStatus), status);
+
+            var form = _context.UserForms.FirstOrDefault(f => f.Id == formId);
+
+            if (form != null) 
+            {
+                form.FormStatus = statusForm;
+                form.RejectedComment = comment;
+            }
+
+            _context.UserForms.Update(form);
+            _context.SaveChanges();
         }
     }
 }

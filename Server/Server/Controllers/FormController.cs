@@ -91,5 +91,14 @@ namespace Server.Controllers
 
             return Ok(form);
         }
+
+        [HttpPut("reviewerResponse")]
+        [Authorize(Roles = "Reviewer")]
+        public  IActionResult reviewerResult(ReviewerAnswer request, [FromQuery] Guid formId)
+        {
+            _formService.GetFormById(formId, request.Status, request.Comment);
+
+            return Ok("gg");
+        }
     }
 }

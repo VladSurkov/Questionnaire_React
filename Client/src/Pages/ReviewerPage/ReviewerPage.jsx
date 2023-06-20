@@ -26,7 +26,6 @@ const ReviewerPage = observer(() => {
 
         const interval = setInterval(() => {
             updateForms();
-            console.log('update');
         }, UPDATE_MS);
 
         return () => clearInterval(interval);

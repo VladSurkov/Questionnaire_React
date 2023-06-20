@@ -9,8 +9,8 @@ import {useNavigate} from 'react-router-dom';
 const Form = observer(() => {
     const navigate = useNavigate();
     const {store} = useContext(Context);
-    // const role = store.user.role;
-    const role = 'User';
+    const role = store.user.role;
+    // const role = 'User';
 
     if (role === 'Creator') {
         return <CreatorFormPage />;

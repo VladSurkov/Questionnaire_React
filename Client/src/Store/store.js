@@ -152,4 +152,46 @@ export default class Store {
             console.log(e);
         }
     }
+
+    async getUserForm(userFormId) {
+        try {
+            const response = await FormService.getUserForm(userFormId);
+            // console.log(response);
+            // const data =
+            //     '{\
+            //         "user": "Stas Surkov",\
+            //         "formTitle": "Самый лучший спорт",\
+            //         "status": "Filled",\
+            //         "answers": [\
+            //           {\
+            //             "question": "Бигмен?",\
+            //             "answer": "Нееее, точно не БИГ"\
+            //           },\
+            //           {\
+            //             "question": "Дота?",\
+            //             "answer": "100% DOTA"\
+            //           },\
+            //           {\
+            //             "question": "Баскетбол?",\
+            //             "answer": "MY LOVE"\
+            //           }\
+            //         ]\
+            // }';
+
+            // return JSON.parse(data);
+            return response.data;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async sendReview(userFormId, status, comment) {
+        // console.log('sendReview', userFormId, status, comment);
+        const response = await FormService.sendReview(
+            userFormId,
+            status,
+            comment,
+        );
+        console.log(response);
+    }
 }

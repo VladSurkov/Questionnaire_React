@@ -31,4 +31,27 @@ export default class FormService {
     static getAllUserForms() {
         return $api.get('/Form/getUserForms');
     }
+
+    static getUserForm(userFormId) {
+        return $api.get('/Form/getUserForm', {
+            params: {
+                id: userFormId,
+            },
+        });
+    }
+
+    static sendReview(userFormId, status, comment) {
+        return $api.put(
+            '/Form/reviewerResponse',
+            {
+                Status: status,
+                Comment: comment,
+            },
+            {
+                params: {
+                    formId: userFormId,
+                },
+            },
+        );
+    }
 }
