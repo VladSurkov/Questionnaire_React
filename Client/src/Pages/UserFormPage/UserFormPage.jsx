@@ -35,17 +35,17 @@ class Question extends Component {
 
         return (
             <div
-                className="UserFormPage__question"
+                className='UserFormPage__question'
                 key={id}
             >
-                <div className="UserFormPage__question__question">
+                <div className='UserFormPage__question__question'>
                     {question}
                 </div>
                 <input
                     value={answer}
-                    type="text"
+                    type='text'
                     onChange={this.handleAnswerChange}
-                    className="UserFormPage__answer"
+                    className='UserFormPage__answer'
                 />
             </div>
         );
@@ -73,9 +73,6 @@ const UserFormPage = observer(() => {
     );
 
     const sendForm = () => {
-        /*
-        Функция для отправки ответов на вопросы в форме
-        */
         const data = Object.keys(qustionsCollectFunctions).map((key) => {
             const collectData = qustionsCollectFunctions[key];
             return collectData();
@@ -115,16 +112,16 @@ const UserFormPage = observer(() => {
     }, []);
 
     return (
-        <div className="UserFormPage">
+        <div className='UserFormPage'>
             <Header />
             {!isEmpty(form) ? (
-                <div className="UserFormPage__form">
-                    <div className="UserFormPage__title">{form.formTitle}</div>
-                    <div className="UserFormPage__creator">{form.creator}</div>
+                <div className='UserFormPage__form'>
+                    <div className='UserFormPage__title'>{form.formTitle}</div>
+                    <div className='UserFormPage__creator'>{form.creator}</div>
                     {questions}
                     <button
                         onClick={sendForm}
-                        className="UserFormPage__btn"
+                        className='UserFormPage__btn'
                     >
                         Відправити форму
                     </button>

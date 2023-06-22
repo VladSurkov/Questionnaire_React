@@ -33,18 +33,20 @@ const ReviewerPage = observer(() => {
     }, []);
 
     return (
-        <div className="ReviewerPage">
-            <Header/>
-            {forms.map((form) => {
-                return ReviewerPageForm({
-                    userFormId: form.userFormId,
-                    user: form.user,
-                    titleForm: form.titleForm,
-                    formStatus: form.formStatus,
-                    navigate: navigate,
-                });
-            })}
-        </div>
+        <>
+            <Header />
+            <div className='ReviewerPage'>
+                {forms.map((form) => {
+                    return ReviewerPageForm({
+                        userFormId: form.userFormId,
+                        user: form.user,
+                        titleForm: form.titleForm,
+                        formStatus: form.formStatus,
+                        navigate: navigate,
+                    });
+                })}
+            </div>
+        </>
     );
 });
 

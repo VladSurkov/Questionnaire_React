@@ -17,6 +17,7 @@
         font-weight: 700;
         font-size: 16px;
         transition: 0.4s ease-in;
+        cursor: pointer;
 
         &:hover {
             background: #084786;
@@ -37,6 +38,7 @@
             font-size: 13px;
             margin-top: 7px;
             background: #16324f;
+            cursor: pointer;
             &:hover {
                 background: #084786;
                 color: #fff;
@@ -125,6 +127,7 @@
         font-weight: 700;
         font-size: 16px;
         transition: 0.4s ease-in;
+        cursor: pointer;
 
         &:hover {
             background: #70b8ff;
